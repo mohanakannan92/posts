@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "My First Blog Post"
+title: "How I Passed CISSP in First Attempt: Journey, resources"
 date: 2026-04-21
 permalink: /cissp-journey/
 ---
