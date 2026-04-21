@@ -1,4 +1,3 @@
-## Cloud and AI Security Researcher :)
 ---
 layout: default
 title: Posts
