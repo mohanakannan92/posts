@@ -2,6 +2,7 @@
 layout: post
 title: "My First Blog Post"
 date: 2026-04-21
+permalink: /cissp-journey/
 ---
 
 All started in the month Oct year 2020, I was Excited as i’m going to learn/pursue one of the Toughest and highest and most
