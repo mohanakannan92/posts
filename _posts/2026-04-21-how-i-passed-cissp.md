@@ -5,6 +5,8 @@ date: 2026-04-21
 permalink: /cissp-journey/
 ---
 
+Mohanakannan B.E(ECE), MSc (Cyber forensics and Information Security), CISSP, CCNSE
+
 All started in the month Oct year 2020, I was Excited as i’m going to learn/pursue one of the Toughest and highest and most
 respected certification in Information security Domain and when i came to know it is Master degree equivalent in Europe that news really made me to go for it!
 
