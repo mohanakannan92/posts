@@ -2,6 +2,7 @@
 layout: post
 title: "My First Blog Post"
 date: 2026-04-21
+permalink : https://github.com/mohanakannan92/posts/blob/684176eac9914cb8fe18e8fa38454a8b654cf362/_posts/2026-04-21-how-i-passed-cissp.md
 ---
 All started in the month Oct year 2020, I was Excited as i’m going to learn/pursue one of the Toughest and highest and most
 respected certification in Information security Domain and when i came to know it is Master degree equivalent in Europe that news really made me to go for it!
