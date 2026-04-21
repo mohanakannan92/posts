@@ -3,9 +3,6 @@ layout: default
 title: Home
 ---
 
-# Mohanakannan - Security Blog
-AI Security | Cloud Native Security | Security Automation | CISSP :)
-
 ## My Posts
 <ul>
   {% for post in site.posts %}
