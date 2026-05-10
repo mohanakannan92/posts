@@ -5,41 +5,61 @@ title: Home
 
 <style>
 :root {
-  --bg: #0f172a;
+  --bg: #0b1120;
   --card: #111827;
+  --card-2: #0f172a;
   --text: #e5e7eb;
   --muted: #94a3b8;
   --accent: #38bdf8;
+  --green: #a3e635;
   --border: #334155;
 }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 30%),
+    radial-gradient(circle at top right, rgba(163, 230, 53, 0.10), transparent 25%),
+    var(--bg);
   color: var(--text);
 }
 
 .hero {
   text-align: center;
-  padding: 60px 20px 40px;
+  padding: 70px 20px 45px;
 }
 
 .hero h1 {
-  font-size: 46px;
-  margin-bottom: 10px;
+  font-size: 52px;
+  margin-bottom: 12px;
+  color: var(--green);
+  text-shadow: 0 0 18px rgba(163, 230, 53, 0.25);
 }
 
 .hero p {
   color: var(--muted);
   font-size: 18px;
+  max-width: 820px;
+  margin: 12px auto;
+}
+
+.hero .credential {
+  color: var(--text);
+  font-size: 20px;
+}
+
+.hero .focus {
+  color: var(--accent);
+  font-size: 20px;
 }
 
 .badge {
   display: inline-block;
-  padding: 6px 12px;
-  margin: 6px;
+  padding: 7px 13px;
+  margin: 7px;
   border: 1px solid var(--border);
   border-radius: 999px;
   color: var(--accent);
+  background: rgba(15, 23, 42, 0.7);
   font-size: 14px;
 }
 
@@ -47,8 +67,12 @@ body {
   margin: 45px 0;
 }
 
+.section h2 {
+  color: var(--green);
+}
+
 .card {
-  background: var(--card);
+  background: linear-gradient(145deg, var(--card), var(--card-2));
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px;
@@ -70,7 +94,7 @@ body {
   border-radius: 10px;
   text-decoration: none;
   font-weight: bold;
-  margin-top: 10px;
+  margin: 10px 6px 0 0;
 }
 
 .secondary {
@@ -90,8 +114,8 @@ a {
 
 <div class="hero">
   <h1>Mohanakannan M</h1>
-  <p><strong>MSc Cyber Forensics & Information Security | CISSP</strong></p>
-  <p><strong>Cloud & AI Security</strong></p>
+  <p class="credential"><strong>MSc Cyber Forensics & Information Security | CISSP</strong></p>
+  <p class="focus"><strong>Cloud & AI Security</strong></p>
   <p>Building secure AI systems that detect, defend, learn, and adapt against prompt injection and data leakage attacks.</p>
 
   <div>
@@ -208,7 +232,7 @@ a {
   <div class="card">
     <ul>
       <li><a href="https://github.com/mohanakannan92">GitHub</a></li>
-      <li><a href="#">LinkedIn — www.linkedin.com/in/mohanakannancissp</a></li>
+      <li><a href="https://www.linkedin.com/in/mohanakannancissp">LinkedIn</a></li>
     </ul>
   </div>
 </div>
