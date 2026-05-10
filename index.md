@@ -89,8 +89,8 @@ a {
 </style>
 
 <div class="hero">
-  <h1>Mohanakannan M</h1>
-  <p><strong>AI Security | Cloud & AI Security | Cyber Forensics</strong></p>
+  <h1>Mohanakannan MSc (Cyber Forensics and Information Security)., CISSP</h1>
+  <p><strong> Cloud & AI Security </strong></p>
   <p>Building secure AI systems that detect, defend, learn, and adapt against prompt injection and data leakage attacks.</p>
 
   <div>
