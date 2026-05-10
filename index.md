@@ -112,17 +112,34 @@ a {
 }
 </style>
 
+<!-- 🔥 HERO SECTION -->
+
 <div class="hero">
   <h1>Mohanakannan M</h1>
-  <p class="credential"><strong>MSc Cyber Forensics & Information Security | CISSP</strong></p>
-  <p class="focus"><strong>Cloud & AI Security</strong></p>
-  <p>Building secure AI systems that detect, defend, learn, and adapt against prompt injection and data leakage attacks.</p>
+
+  <p class="credential">
+    <strong>MSc Cyber Forensics & Information Security | CISSP</strong>
+  </p>
+
+  <p class="focus">
+    <strong>Cloud & AI Security | Defense Engineering</strong>
+  </p>
+
+  <p>
+    <strong>Double Crown</strong> — securing AI from both sides by building systems
+    that can <strong>detect, defend, and withstand adversarial attacks</strong>.
+  </p>
+
+  <p style="color:#94a3b8; max-width:700px; margin:auto;">
+    I design AI systems with an attacker mindset and engineer defenses that prevent
+    prompt injection, data leakage, and unsafe model behavior.
+  </p>
 
   <div>
     <span class="badge">Prompt Injection Defense</span>
     <span class="badge">RAG Security</span>
     <span class="badge">AI Guardrails</span>
-    <span class="badge">Security Automation</span>
+    <span class="badge">Adaptive Defense</span>
   </div>
 
   <p>
@@ -131,24 +148,56 @@ a {
   </p>
 </div>
 
+<!-- 👋 ABOUT -->
+
 <div class="section" id="about">
   <h2>👋 About</h2>
   <div class="card">
     <p>
-      I am building a hands-on AI Security portfolio focused on attacking and defending real-world AI systems.
-      My work covers prompt injection, intent-aware defense, sequential attack detection, adaptive learning,
-      output sanitization, and secure prompt design.
+      I am building a hands-on AI Security portfolio focused on attacking and defending
+      real-world AI systems. My work covers prompt injection, intent-aware defense,
+      sequential attack detection, adaptive learning, output sanitization,
+      and secure prompt design.
     </p>
   </div>
 </div>
 
+<!-- 👑 BRAND SECTION -->
+
+<div class="section">
+  <h2>👑 What is Double Crown?</h2>
+
+  <div class="card">
+    <p>
+      <strong>Double Crown</strong> represents mastery of both sides of AI security:
+    </p>
+
+    <ul>
+      <li><strong>Offensive AI Security</strong> — understanding how AI systems are attacked</li>
+      <li><strong>Defensive AI Engineering</strong> — building systems that resist those attacks</li>
+    </ul>
+
+    <p>
+      This approach enables designing AI systems that are not just functional,
+      but resilient against real-world adversarial behavior.
+    </p>
+  </div>
+</div>
+
+<!-- 🔐 CORE PLATFORM -->
+
 <div class="section" id="projects">
-  <h2>🔐 Featured Project</h2>
+  <h2>🔐 Core Platform</h2>
 
   <div class="card">
     <h3>AI Security Lab</h3>
+
     <p>
       A practical lab for building, attacking, and securing AI applications using layered defenses.
+    </p>
+
+    <p style="color:#94a3b8;">
+      Built using real-world attack simulations, defense pipelines, and adaptive security models.
     </p>
 
     <div class="grid">
@@ -177,6 +226,8 @@ a {
   </div>
 </div>
 
+<!-- 🧪 TOOLS -->
+
 <div class="section">
   <h2>🧪 Free AI Security Tools</h2>
 
@@ -191,26 +242,30 @@ a {
   </div>
 </div>
 
+<!-- 🧠 FOCUS AREAS -->
+
 <div class="section">
   <h2>🧠 System Focus Areas</h2>
 
   <div class="grid">
     <div class="card">
       <h3>Input Defense</h3>
-      <p>Detect malicious prompts, sensitive intent, and attack patterns before they reach the model.</p>
+      <p>Detect malicious prompts and risky patterns before reaching the model.</p>
     </div>
 
     <div class="card">
       <h3>Decision Intelligence</h3>
-      <p>Use risk scoring, confidence, thresholds, and feedback loops for smarter decisions.</p>
+      <p>Use risk scoring, confidence, and feedback loops for adaptive decisions.</p>
     </div>
 
     <div class="card">
       <h3>Output Protection</h3>
-      <p>Sanitize model responses to prevent system prompt, policy, or internal instruction leakage.</p>
+      <p>Prevent leakage of system prompts and internal instructions.</p>
     </div>
   </div>
 </div>
+
+<!-- ✍️ BLOG -->
 
 <div class="section">
   <h2>✍️ Latest Posts</h2>
@@ -225,6 +280,8 @@ a {
     </ul>
   </div>
 </div>
+
+<!-- 📫 CONTACT -->
 
 <div class="section">
   <h2>📫 Connect</h2>
