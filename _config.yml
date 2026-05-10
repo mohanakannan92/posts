@@ -1,6 +1,20 @@
-title: Mohanakannan - Security Blog
-description: AI Security | Cloud Native Security | Security Automation | CISSP :)
-theme: jekyll-theme-hacker
-markdown: kramdown
-url: https://github.io
+# 🔷 Site Identity
+title: Double Crown
+description: let data be secure!
+author: Mohanakannan
+
+# 🔷 URL Settings
+url: "https://mohanakannan92.github.io"
 baseurl: ""
+
+# 🔷 Branding (custom)
+tagline: "AI Security | Cloud & AI Security | Cyber Forensics"
+logo: "/assets/images/logo.png"
+
+# 🔷 Social Links (optional but powerful)
+github_username: mohanakannan92
+linkedin_url: "https://linkedin.com/in/YOUR-LINK"
+
+# 🔷 Build Settings
+theme: minima
+markdown: kramdown
