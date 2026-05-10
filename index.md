@@ -207,7 +207,7 @@ a {
   <div class="card">
     <ul>
       <li><a href="https://github.com/mohanakannan92">GitHub</a></li>
-      <li><a href="#">LinkedIn — add your link here</a></li>
+      <li><a href="#">LinkedIn — www.linkedin.com/in/mohanakannancissp</a></li>
     </ul>
   </div>
 </div>
