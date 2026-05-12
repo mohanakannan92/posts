@@ -115,19 +115,14 @@ a {
 <!-- 🔥 HERO SECTION -->
 
 <div class="hero">
-  <h1>Mohanakannan M</h1>
+  <h1>Mohanakannan</h1>
 
   <p class="credential">
     <strong>MSc Cyber Forensics & Information Security | CISSP</strong>
   </p>
 
   <p class="focus">
-    <strong>Cloud & AI Security | Defense Engineering</strong>
-  </p>
-
-  <p>
-    <strong>Double Crown</strong> — securing AI from both sides by building systems
-    that can <strong>detect, defend, and withstand adversarial attacks</strong>.
+    <strong>Cloud & AI Security | Offence & Defense Engineering</strong>
   </p>
 
   <p style="color:#94a3b8; max-width:700px; margin:auto;">
