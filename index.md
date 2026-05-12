@@ -1,8 +1,12 @@
 ---
-
 layout: default
 title: Home
------------
+---
+
+---
+layout: default
+title: Home
+---
 
 <style>
 :root {
@@ -24,31 +28,25 @@ body {
   color: var(--text);
 }
 
-/* 👑 Logo animation */
+/* Hide default Minima page title */
+.post-title,
+.page-heading {
+  display: none;
+}
+
 .brand-logo {
   display: block;
-  max-width: 420px;
-  width: 85%;
+  max-width: 620px;
+  width: 92%;
   height: auto;
-  margin: 0 auto 30px;
-  filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.25));
-  animation: logoGlow 3s ease-in-out infinite alternate;
+  margin: 0 auto 28px;
+  filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.25));
 }
 
-@keyframes logoGlow {
-  from {
-    filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.20));
-  }
-  to {
-    filter: drop-shadow(0 0 28px rgba(163, 230, 53, 0.30));
-  }
-}
-
-/* 📱 Mobile */
 @media (max-width: 600px) {
   .brand-logo {
-    max-width: 280px;
-    width: 90%;
+    max-width: 340px;
+    width: 95%;
     margin-bottom: 22px;
   }
 
