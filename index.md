@@ -23,46 +23,46 @@ body {
   color: var(--text);
 }
 
-/* Hide default Minima page title */
+/* Hide Minima default title */
 .post-title,
-.site-header,
 .page-heading {
   display: none;
 }
 
-.brand-logo {
-  display: block;
-  max-width: 620px;
-  width: 92%;
-  height: auto;
-  margin: 0 auto 28px;
-  filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.25));
+/* Remove default extra spacing */
+.post-content {
+  margin-top: 0;
 }
 
-@media (max-width: 600px) {
-  .brand-logo {
-    max-width: 340px;
-    width: 95%;
-    margin-bottom: 22px;
-  }
-
-  .hero h1 {
-    font-size: 36px;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
-}
-
+/* 👑 Hero */
 .hero {
   text-align: center;
-  padding: 70px 20px 45px;
+  padding: 80px 20px 50px;
+}
+
+/* 👑 Brand Logo */
+.brand-logo {
+  display: block;
+  max-width: 600px;
+  width: 90%;
+  height: auto;
+  margin: 0 auto 20px;
+  filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.28));
+  animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  from {
+    filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.22));
+  }
+  to {
+    filter: drop-shadow(0 0 28px rgba(163, 230, 53, 0.32));
+  }
 }
 
 .hero h1 {
-  font-size: 52px;
-  margin-bottom: 10px;
+  font-size: 48px;
+  margin: 10px 0 8px;
   color: var(--green);
   text-shadow: 0 0 18px rgba(163, 230, 53, 0.25);
 }
@@ -77,14 +77,16 @@ body {
 .hero .credential {
   color: var(--text);
   font-size: 20px;
+  margin-top: 6px;
+  margin-bottom: 10px;
 }
 
 .hero .focus {
   color: var(--accent);
   font-size: 20px;
+  margin-bottom: 14px;
 }
 
-/* 🛡️ Badge hover */
 .badge {
   display: inline-block;
   padding: 7px 13px;
@@ -102,7 +104,6 @@ body {
   box-shadow: 0 0 18px rgba(56, 189, 248, 0.25);
 }
 
-/* 🔘 Button hover */
 .button {
   display: inline-block;
   padding: 10px 16px;
@@ -156,17 +157,50 @@ ul li {
 a {
   color: var(--accent);
 }
+
+/* 📱 Mobile */
+@media (max-width: 600px) {
+  .hero {
+    padding: 60px 15px 40px;
+  }
+
+  .brand-logo {
+    max-width: 320px;
+    width: 95%;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+    margin-top: 6px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero .credential,
+  .hero .focus {
+    font-size: 17px;
+  }
+
+  .button {
+    display: block;
+    width: fit-content;
+    margin: 10px auto;
+  }
+}
 </style>
 
 <!-- 🔥 HERO -->
 
 <div class="hero">
 
-<img 
- src="{{ site.logo | relative_url }}" 
- alt="Double Crown Logo"
- class="brand-logo"
-/>
+  <img 
+    src="{{ site.logo | relative_url }}" 
+    alt="Double Crown Logo"
+    class="brand-logo"
+  />
 
   <h1>Mohanakannan</h1>
 
@@ -204,8 +238,8 @@ a {
   <div class="card">
     <p>
       I am building a hands-on AI Security portfolio focused on attacking and defending
-      real-world AI systems including prompt injection, intent-aware defense,
-      sequential attack detection, adaptive learning, and output sanitization.
+      real-world AI systems including prompt injection, intent-aware defense, sequential
+      attack detection, adaptive learning, and output sanitization.
     </p>
   </div>
 </div>
@@ -218,17 +252,14 @@ a {
   <div class="card">
     <p><strong>Double Crown</strong> represents mastery of both sides of AI security:</p>
 
-```
-<ul>
-  <li><strong>Offensive AI Security</strong> — understanding attacks</li>
-  <li><strong>Defensive AI Engineering</strong> — building resilience</li>
-</ul>
+    <ul>
+      <li><strong>Offensive AI Security</strong> — understanding attacks</li>
+      <li><strong>Defensive AI Engineering</strong> — building resilience</li>
+    </ul>
 
-<p>
-  This enables designing AI systems that are secure against real-world adversarial behavior.
-</p>
-```
-
+    <p>
+      This enables designing AI systems that are secure against real-world adversarial behavior.
+    </p>
   </div>
 </div>
 
@@ -240,36 +271,33 @@ a {
   <div class="card">
     <h3>AI Security Lab</h3>
 
-```
-<p>
-  Practical lab for building, attacking, and securing AI systems using layered defenses.
-</p>
+    <p>
+      Practical lab for building, attacking, and securing AI systems using layered defenses.
+    </p>
 
-<div class="grid">
-  <div>
-    <h4>Attack Coverage</h4>
-    <ul>
-      <li>Prompt injection</li>
-      <li>Role override</li>
-      <li>System prompt extraction</li>
-      <li>Multi-step attacks</li>
-    </ul>
-  </div>
+    <div class="grid">
+      <div>
+        <h4>Attack Coverage</h4>
+        <ul>
+          <li>Prompt injection</li>
+          <li>Role override</li>
+          <li>System prompt extraction</li>
+          <li>Multi-step attacks</li>
+        </ul>
+      </div>
 
-  <div>
-    <h4>Defense Layers</h4>
-    <ul>
-      <li>Intent-aware detection</li>
-      <li>Sequential defense</li>
-      <li>Adaptive learning</li>
-      <li>Output sanitization</li>
-    </ul>
-  </div>
-</div>
+      <div>
+        <h4>Defense Layers</h4>
+        <ul>
+          <li>Intent-aware detection</li>
+          <li>Sequential defense</li>
+          <li>Adaptive learning</li>
+          <li>Output sanitization</li>
+        </ul>
+      </div>
+    </div>
 
-<a class="button" href="https://github.com/mohanakannan92/ai-security-lab">View Project</a>
-```
-
+    <a class="button" href="https://github.com/mohanakannan92/ai-security-lab">View Project</a>
   </div>
 </div>
 
@@ -281,20 +309,17 @@ a {
   <div class="card">
     <h3>Red Team Evaluation Dashboard</h3>
 
-```
-<p>
-  Visual tracking of attacks, blocks, leakage attempts, and defense performance.
-</p>
+    <p>
+      Visual tracking of attacks, blocks, leakage attempts, and defense performance.
+    </p>
 
-<p style="color:#94a3b8;">
-  Measures how well layered AI defenses withstand adversarial prompts.
-</p>
+    <p style="color:#94a3b8;">
+      Measures how well layered AI defenses withstand adversarial prompts.
+    </p>
 
-<a class="button" href="https://github.com/mohanakannan92/ai-security-lab">
-  View Dashboard Code
-</a>
-```
-
+    <a class="button" href="https://github.com/mohanakannan92/ai-security-lab">
+      View Dashboard Code
+    </a>
   </div>
 </div>
 
@@ -321,18 +346,15 @@ a {
       <p>Detect malicious prompts before reaching the model.</p>
     </div>
 
-```
-<div class="card">
-  <h3>Decision Intelligence</h3>
-  <p>Risk scoring and adaptive decisions.</p>
-</div>
+    <div class="card">
+      <h3>Decision Intelligence</h3>
+      <p>Risk scoring and adaptive decisions.</p>
+    </div>
 
-<div class="card">
-  <h3>Output Protection</h3>
-  <p>Prevent system prompt leakage.</p>
-</div>
-```
-
+    <div class="card">
+      <h3>Output Protection</h3>
+      <p>Prevent system prompt leakage.</p>
+    </div>
   </div>
 </div>
 
