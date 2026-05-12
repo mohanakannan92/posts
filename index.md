@@ -25,6 +25,7 @@ body {
 
 /* Hide default Minima page title */
 .post-title,
+.site-header,
 .page-heading {
   display: none;
 }
