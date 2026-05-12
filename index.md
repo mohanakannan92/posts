@@ -3,11 +3,6 @@ layout: default
 title: Home
 ---
 
----
-layout: default
-title: Home
----
-
 <style>
 :root {
   --bg: #0b1120;
