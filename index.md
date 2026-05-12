@@ -63,7 +63,7 @@ body {
 .hero h1 {
   font-size: 48px;
   margin: 10px 0 8px;
-  color: #a3e635;
+  color: var(--green);
   text-shadow: 0 0 18px rgba(163, 230, 53, 0.25);
 }
 
