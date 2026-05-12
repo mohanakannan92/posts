@@ -9,11 +9,11 @@ baseurl: ""
 
 # 🔷 Branding (custom)
 tagline: "AI Security | Cloud & AI Security | Cyber Forensics"
-logo: "/assets/images/logo.png"
+logo: "/assets/images/logo2.png"
 
 # 🔷 Social Links (optional but powerful)
 github_username: mohanakannan92
-linkedin_url: "https://linkedin.com/in/YOUR-LINK"
+linkedin_url: "https://linkedin.com/in/mohanakannancissp"
 
 # 🔷 Build Settings
 theme: minima
