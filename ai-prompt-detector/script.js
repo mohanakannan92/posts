@@ -1,12 +1,11 @@
-alert("NEW SCRIPT LOADED"); // Confirm correct file is loaded
+alert("NEW SCRIPT LOADED");
 console.log("API version script loaded");
 
-async function analyzeInput() {
+window.analyzeInput = async function () {
   const input = document.getElementById("userInput").value;
   const resultBox = document.getElementById("result");
 
-  // Show loading state
-  resultBox.className = "result-box";
+  resultBox.className = "result-box warning";
   resultBox.classList.remove("hidden");
   resultBox.innerHTML = "Analyzing via FastAPI backend...";
 
@@ -21,14 +20,12 @@ async function analyzeInput() {
 
     const data = await response.json();
 
-    // Set UI color
     let cssClass = "safe";
     if (data.decision === "BLOCK") cssClass = "danger";
     else if (data.decision === "REVIEW") cssClass = "warning";
 
     resultBox.className = `result-box ${cssClass}`;
 
-    // Render response
     resultBox.innerHTML = `
       <h3>Analysis Result</h3>
       <p><strong>Intent:</strong> ${data.intent}</p>
@@ -49,4 +46,4 @@ async function analyzeInput() {
     resultBox.innerHTML = "❌ Error connecting to backend API.";
     console.error("API ERROR:", error);
   }
-}
+};
