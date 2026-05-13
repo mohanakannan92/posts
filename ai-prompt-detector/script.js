@@ -1,15 +1,12 @@
+alert("NEW SCRIPT LOADED"); // Confirm correct file is loaded
 console.log("API version script loaded");
-
-document.addEventListener("DOMContentLoaded", function () {
-  const analyzeBtn = document.getElementById("analyzeBtn");
-  analyzeBtn.addEventListener("click", analyzeInput);
-});
 
 async function analyzeInput() {
   const input = document.getElementById("userInput").value;
   const resultBox = document.getElementById("result");
 
-  resultBox.className = "result-box warning";
+  // Show loading state
+  resultBox.className = "result-box";
   resultBox.classList.remove("hidden");
   resultBox.innerHTML = "Analyzing via FastAPI backend...";
 
@@ -24,19 +21,25 @@ async function analyzeInput() {
 
     const data = await response.json();
 
+    // Set UI color
     let cssClass = "safe";
     if (data.decision === "BLOCK") cssClass = "danger";
     else if (data.decision === "REVIEW") cssClass = "warning";
 
     resultBox.className = `result-box ${cssClass}`;
 
+    // Render response
     resultBox.innerHTML = `
       <h3>Analysis Result</h3>
       <p><strong>Intent:</strong> ${data.intent}</p>
       <p><strong>Pattern Score:</strong> ${data.pattern_score}</p>
       <p><strong>Intent Score:</strong> ${data.intent_score}</p>
       <p><strong>Final Risk:</strong> ${data.final_risk}</p>
-      <p><strong>Detected Patterns:</strong> ${data.detected_patterns.length ? data.detected_patterns.join(", ") : "None"}</p>
+      <p><strong>Detected Patterns:</strong> ${
+        data.detected_patterns && data.detected_patterns.length
+          ? data.detected_patterns.join(", ")
+          : "None"
+      }</p>
       <p><strong>Decision:</strong> ${data.decision}</p>
       <p><strong>Reason:</strong> ${data.reason}</p>
     `;
@@ -44,6 +47,6 @@ async function analyzeInput() {
   } catch (error) {
     resultBox.className = "result-box danger";
     resultBox.innerHTML = "❌ Error connecting to backend API.";
-    console.error(error);
+    console.error("API ERROR:", error);
   }
 }
