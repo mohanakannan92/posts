@@ -7,7 +7,7 @@ function analyzeInput() {
   let patternScore = 0;
 
   const rules = [
-    { pattern: "reveal hidden system prompt", weight: 70, type: "phrase" }
+    { pattern: "reveal hidden system prompt", weight: 70, type: "phrase" },
     { pattern: "ignore all instructions", weight: 50, type: "phrase" },
     { pattern: "ignore previous instructions", weight: 50, type: "phrase" },
     { pattern: "reveal system prompt", weight: 60, type: "phrase" },
@@ -26,9 +26,6 @@ function analyzeInput() {
     { pattern: "system", weight: 20, type: "word" }
   ];
 
-  const matchedSet = new Set();
-
-  // Sort high → low
   rules.sort((a, b) => b.weight - a.weight);
 
   rules.forEach(rule => {
@@ -37,29 +34,23 @@ function analyzeInput() {
     if (rule.type === "phrase") {
       matched = input.includes(rule.pattern);
     } else {
-      const regex = new RegExp(`\\b${rule.pattern}\\b`, "i");
+      const regex = new RegExp("\\b" + rule.pattern + "\\b", "i");
       matched = regex.test(input);
     }
 
     if (matched) {
-      // 🔥 Skip weaker patterns if stronger one already matched
       let shouldSkip = false;
 
       for (let existing of patterns) {
-        if (
-          existing.includes(rule.pattern) ||
-          rule.pattern.includes(existing) ||
-          input.includes(existing + " " + rule.pattern)
-        ){
+        if (existing.includes(rule.pattern) || rule.pattern.includes(existing)) {
           shouldSkip = true;
           break;
         }
       }
 
-      if (!shouldSkip && !matchedSet.has(rule.pattern)) {
+      if (!shouldSkip) {
         patternScore += rule.weight;
         patterns.push(rule.pattern);
-        matchedSet.add(rule.pattern);
       }
     }
   });
@@ -91,9 +82,9 @@ function analyzeInput() {
   let reason = "No malicious indicators detected.";
 
   if (decision === "BLOCK") {
-    reason = "High-risk prompt injection or data extraction attempt detected.";
+    reason = "High-risk prompt injection, role override, or data extraction attempt detected.";
   } else if (decision === "REVIEW") {
-    reason = "Suspicious patterns found. Manual validation recommended.";
+    reason = "Suspicious security-related patterns found. Manual validation is recommended.";
   }
 
   resultBox.className = `result-box ${cssClass}`;
