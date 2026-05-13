@@ -1,12 +1,20 @@
 function analyzeInput() {
-  const input = document.getElementById("userInput").value.toLowerCase();
+  const rawInput = document.getElementById("userInput").value;
+  const input = rawInput.toLowerCase().trim();
   const resultBox = document.getElementById("result");
 
   let patterns = [];
   let patternScore = 0;
 
-  // 🔥 Pattern rules (your weighted system)
   const rules = [
+    { pattern: "ignore all instructions", weight: 50 },
+    { pattern: "ignore previous instructions", weight: 50 },
+    { pattern: "reveal system prompt", weight: 60 },
+    { pattern: "system prompt", weight: 50 },
+    { pattern: "show hidden", weight: 45 },
+    { pattern: "developer mode", weight: 50 },
+    { pattern: "admin mode", weight: 45 },
+
     { pattern: "ignore", weight: 25 },
     { pattern: "disregard", weight: 25 },
     { pattern: "act as", weight: 30 },
@@ -19,45 +27,44 @@ function analyzeInput() {
   ];
 
   rules.forEach(rule => {
-    if (input.includes(rule.pattern)) {
+    const regex = new RegExp("\\b" + rule.pattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i");
+
+    if (regex.test(input)) {
       patternScore += rule.weight;
       patterns.push(rule.pattern);
     }
   });
 
-  // 🧠 Intent Detection (your real logic simplified)
   let intent = "Benign";
   let intentScore = 0;
 
-  if (patterns.length >= 3) {
+  if (patternScore >= 80) {
     intent = "Malicious";
     intentScore = 50;
-  } else if (patterns.length > 0) {
+  } else if (patternScore >= 30) {
     intent = "Suspicious";
     intentScore = 25;
   }
 
-  // 🔥 Final Risk Calculation
-  let finalRisk = patternScore + intentScore;
+  const finalRisk = patternScore + intentScore;
 
   let decision = "ALLOW";
   let cssClass = "safe";
 
-  if (finalRisk > 80) {
+  if (finalRisk >= 80) {
     decision = "BLOCK";
     cssClass = "danger";
-  } else if (finalRisk > 40) {
+  } else if (finalRisk >= 40) {
     decision = "REVIEW";
     cssClass = "warning";
   }
 
-  // 💡 Explanation (THIS MAKES YOU DIFFERENT)
   let reason = "No malicious indicators detected.";
 
   if (decision === "BLOCK") {
-    reason = "High-risk prompt injection or data extraction attempt detected.";
+    reason = "High-risk prompt injection, role override, or data extraction attempt detected.";
   } else if (decision === "REVIEW") {
-    reason = "Suspicious patterns found. Requires validation.";
+    reason = "Suspicious security-related patterns found. Manual validation is recommended.";
   }
 
   resultBox.className = `result-box ${cssClass}`;
