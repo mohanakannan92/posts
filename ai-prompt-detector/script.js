@@ -27,25 +27,39 @@ function analyzeInput() {
 
   const matchedSet = new Set();
 
-  // Higher-risk rules are checked first
-  rules.sort((a, b) => b.weight - a.weight);
+// Sort by weight (high → low)
+rules.sort((a, b) => b.weight - a.weight);
 
-  rules.forEach(rule => {
-    let matched = false;
+rules.forEach(rule => {
+  let matched = false;
 
-    if (rule.type === "phrase") {
-      matched = input.includes(rule.pattern);
-    } else {
-      const regex = new RegExp(`\\b${rule.pattern}\\b`, "i");
-      matched = regex.test(input);
-    }
+  if (rule.type === "phrase") {
+    matched = input.includes(rule.pattern);
+  } else {
+    const regex = new RegExp(`\\b${rule.pattern}\\b`, "i");
+    matched = regex.test(input);
+  }
 
-    if (matched && !matchedSet.has(rule.pattern)) {
+  if (matched) {
+    // 🚫 Skip weaker patterns if stronger phrase already matched
+    let shouldSkip = false;
+
+    patterns.forEach(existing => {
+      if (
+        existing.includes(rule.pattern) ||   // existing stronger
+        rule.pattern.includes(existing)      // rule weaker
+      ) {
+        shouldSkip = true;
+      }
+    });
+
+    if (!shouldSkip && !matchedSet.has(rule.pattern)) {
       patternScore += rule.weight;
       patterns.push(rule.pattern);
       matchedSet.add(rule.pattern);
     }
-  });
+  }
+});
 
   let intent = "Benign";
   let intentScore = 0;
