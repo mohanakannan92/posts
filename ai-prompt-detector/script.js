@@ -27,39 +27,40 @@ function analyzeInput() {
 
   const matchedSet = new Set();
 
-// Sort by weight (high → low)
-rules.sort((a, b) => b.weight - a.weight);
+  // Sort high → low
+  rules.sort((a, b) => b.weight - a.weight);
 
-rules.forEach(rule => {
-  let matched = false;
+  rules.forEach(rule => {
+    let matched = false;
 
-  if (rule.type === "phrase") {
-    matched = input.includes(rule.pattern);
-  } else {
-    const regex = new RegExp(`\\b${rule.pattern}\\b`, "i");
-    matched = regex.test(input);
-  }
-
-  if (matched) {
-    // 🚫 Skip weaker patterns if stronger phrase already matched
-    let shouldSkip = false;
-
-    patterns.forEach(existing => {
-      if (
-        existing.includes(rule.pattern) ||   // existing stronger
-        rule.pattern.includes(existing)      // rule weaker
-      ) {
-        shouldSkip = true;
-      }
-    });
-
-    if (!shouldSkip && !matchedSet.has(rule.pattern)) {
-      patternScore += rule.weight;
-      patterns.push(rule.pattern);
-      matchedSet.add(rule.pattern);
+    if (rule.type === "phrase") {
+      matched = input.includes(rule.pattern);
+    } else {
+      const regex = new RegExp(`\\b${rule.pattern}\\b`, "i");
+      matched = regex.test(input);
     }
-  }
-});
+
+    if (matched) {
+      // 🔥 Skip weaker patterns if stronger one already matched
+      let shouldSkip = false;
+
+      for (let existing of patterns) {
+        if (
+          existing.includes(rule.pattern) ||
+          rule.pattern.includes(existing)
+        ) {
+          shouldSkip = true;
+          break;
+        }
+      }
+
+      if (!shouldSkip && !matchedSet.has(rule.pattern)) {
+        patternScore += rule.weight;
+        patterns.push(rule.pattern);
+        matchedSet.add(rule.pattern);
+      }
+    }
+  });
 
   let intent = "Benign";
   let intentScore = 0;
@@ -88,9 +89,9 @@ rules.forEach(rule => {
   let reason = "No malicious indicators detected.";
 
   if (decision === "BLOCK") {
-    reason = "High-risk prompt injection, role override, or data extraction attempt detected.";
+    reason = "High-risk prompt injection or data extraction attempt detected.";
   } else if (decision === "REVIEW") {
-    reason = "Suspicious security-related patterns found. Manual validation is recommended.";
+    reason = "Suspicious patterns found. Manual validation recommended.";
   }
 
   resultBox.className = `result-box ${cssClass}`;
