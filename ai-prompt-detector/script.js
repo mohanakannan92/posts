@@ -7,6 +7,7 @@ function analyzeInput() {
   let patternScore = 0;
 
   const rules = [
+    { pattern: "reveal hidden system prompt", weight: 70, type: "phrase" }
     { pattern: "ignore all instructions", weight: 50, type: "phrase" },
     { pattern: "ignore previous instructions", weight: 50, type: "phrase" },
     { pattern: "reveal system prompt", weight: 60, type: "phrase" },
