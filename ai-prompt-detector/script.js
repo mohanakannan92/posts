@@ -1,110 +1,49 @@
-console.log("script.js loaded successfully");
+console.log("API version script loaded");
 
 document.addEventListener("DOMContentLoaded", function () {
   const analyzeBtn = document.getElementById("analyzeBtn");
   analyzeBtn.addEventListener("click", analyzeInput);
 });
 
-function analyzeInput() {
-  const rawInput = document.getElementById("userInput").value;
-  const input = rawInput.toLowerCase().trim();
+async function analyzeInput() {
+  const input = document.getElementById("userInput").value;
   const resultBox = document.getElementById("result");
 
-  let patterns = [];
-  let patternScore = 0;
-
-  const rules = [
-    { pattern: "reveal hidden system prompt", weight: 70, type: "phrase" },
-    { pattern: "reveal system prompt", weight: 60, type: "phrase" },
-    { pattern: "ignore all instructions", weight: 50, type: "phrase" },
-    { pattern: "ignore previous instructions", weight: 50, type: "phrase" },
-    { pattern: "system prompt", weight: 50, type: "phrase" },
-    { pattern: "developer mode", weight: 50, type: "phrase" },
-    { pattern: "admin mode", weight: 45, type: "phrase" },
-    { pattern: "act as", weight: 30, type: "phrase" },
-
-    { pattern: "ignore", weight: 25, type: "word" },
-    { pattern: "disregard", weight: 25, type: "word" },
-    { pattern: "admin", weight: 30, type: "word" },
-    { pattern: "override", weight: 35, type: "word" },
-    { pattern: "bypass", weight: 35, type: "word" },
-    { pattern: "reveal", weight: 40, type: "word" },
-    { pattern: "hidden", weight: 40, type: "word" },
-    { pattern: "system", weight: 20, type: "word" }
-  ];
-
-  rules.sort((a, b) => b.weight - a.weight);
-
-  rules.forEach(rule => {
-    let matched = false;
-
-    if (rule.type === "phrase") {
-      matched = input.includes(rule.pattern);
-    } else {
-      const regex = new RegExp("\\b" + rule.pattern + "\\b", "i");
-      matched = regex.test(input);
-    }
-
-    if (matched) {
-      let shouldSkip = false;
-
-      for (let existing of patterns) {
-        if (existing.includes(rule.pattern) || rule.pattern.includes(existing)) {
-          shouldSkip = true;
-          break;
-        }
-      }
-
-      if (!shouldSkip) {
-        patternScore += rule.weight;
-        patterns.push(rule.pattern);
-      }
-    }
-  });
-
-  let intent = "Benign";
-  let intentScore = 0;
-
-  if (patternScore >= 80) {
-    intent = "Malicious";
-    intentScore = 50;
-  } else if (patternScore >= 30) {
-    intent = "Suspicious";
-    intentScore = 25;
-  }
-
-  const finalRisk = patternScore + intentScore;
-
-  let decision = "ALLOW";
-  let cssClass = "safe";
-
-  if (finalRisk >= 80) {
-    decision = "BLOCK";
-    cssClass = "danger";
-  } else if (finalRisk >= 40) {
-    decision = "REVIEW";
-    cssClass = "warning";
-  }
-
-  let reason = "No malicious indicators detected.";
-
-  if (decision === "BLOCK") {
-    reason = "High-risk prompt injection, role override, or data extraction attempt detected.";
-  } else if (decision === "REVIEW") {
-    reason = "Suspicious security-related patterns found. Manual validation is recommended.";
-  }
-
-  resultBox.className = `result-box ${cssClass}`;
+  resultBox.className = "result-box warning";
   resultBox.classList.remove("hidden");
+  resultBox.innerHTML = "Analyzing via FastAPI backend...";
 
-  resultBox.innerHTML = `
-    <h3>Analysis Result</h3>
-    <p><strong>Intent:</strong> ${intent}</p>
-    <p><strong>Pattern Score:</strong> ${patternScore}</p>
-    <p><strong>Intent Score:</strong> ${intentScore}</p>
-    <p><strong>Final Risk:</strong> ${finalRisk}</p>
-    <p><strong>Detected Patterns:</strong> ${patterns.length ? patterns.join(", ") : "None"}</p>
-    <p><strong>Decision:</strong> ${decision}</p>
-    <p><strong>Reason:</strong> ${reason}</p>
-  `;
+  try {
+    const response = await fetch("http://127.0.0.1:8000/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ input: input })
+    });
+
+    const data = await response.json();
+
+    let cssClass = "safe";
+    if (data.decision === "BLOCK") cssClass = "danger";
+    else if (data.decision === "REVIEW") cssClass = "warning";
+
+    resultBox.className = `result-box ${cssClass}`;
+
+    resultBox.innerHTML = `
+      <h3>Analysis Result</h3>
+      <p><strong>Intent:</strong> ${data.intent}</p>
+      <p><strong>Pattern Score:</strong> ${data.pattern_score}</p>
+      <p><strong>Intent Score:</strong> ${data.intent_score}</p>
+      <p><strong>Final Risk:</strong> ${data.final_risk}</p>
+      <p><strong>Detected Patterns:</strong> ${data.detected_patterns.length ? data.detected_patterns.join(", ") : "None"}</p>
+      <p><strong>Decision:</strong> ${data.decision}</p>
+      <p><strong>Reason:</strong> ${data.reason}</p>
+    `;
+
+  } catch (error) {
+    resultBox.className = "result-box danger";
+    resultBox.innerHTML = "❌ Error connecting to backend API.";
+    console.error(error);
+  }
 }
