@@ -7,34 +7,47 @@ function analyzeInput() {
   let patternScore = 0;
 
   const rules = [
-    { pattern: "ignore all instructions", weight: 50 },
-    { pattern: "ignore previous instructions", weight: 50 },
-    { pattern: "reveal system prompt", weight: 60 },
-    { pattern: "system prompt", weight: 50 },
-    { pattern: "show hidden", weight: 45 },
-    { pattern: "developer mode", weight: 50 },
-    { pattern: "admin mode", weight: 45 },
+    // 🔴 Strong multi-word attacks (use includes)
+    { pattern: "ignore all instructions", weight: 50, type: "phrase" },
+    { pattern: "ignore previous instructions", weight: 50, type: "phrase" },
+    { pattern: "reveal system prompt", weight: 60, type: "phrase" },
+    { pattern: "system prompt", weight: 50, type: "phrase" },
+    { pattern: "developer mode", weight: 50, type: "phrase" },
+    { pattern: "admin mode", weight: 45, type: "phrase" },
 
-    { pattern: "ignore", weight: 25 },
-    { pattern: "disregard", weight: 25 },
-    { pattern: "act as", weight: 30 },
-    { pattern: "admin", weight: 30 },
-    { pattern: "override", weight: 35 },
-    { pattern: "bypass", weight: 35 },
-    { pattern: "reveal", weight: 40 },
-    { pattern: "hidden", weight: 40 },
-    { pattern: "system", weight: 20 }
+    // 🟡 Single word (use regex)
+    { pattern: "ignore", weight: 25, type: "word" },
+    { pattern: "disregard", weight: 25, type: "word" },
+    { pattern: "act as", weight: 30, type: "phrase" },
+    { pattern: "admin", weight: 30, type: "word" },
+    { pattern: "override", weight: 35, type: "word" },
+    { pattern: "bypass", weight: 35, type: "word" },
+    { pattern: "reveal", weight: 40, type: "word" },
+    { pattern: "hidden", weight: 40, type: "word" },
+    { pattern: "system", weight: 20, type: "word" }
   ];
 
   rules.forEach(rule => {
-    const regex = new RegExp("\\b" + rule.pattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i");
+    let matched = false;
 
-    if (regex.test(input)) {
+    if (rule.type === "phrase") {
+      if (input.includes(rule.pattern)) {
+        matched = true;
+      }
+    } else {
+      const regex = new RegExp(`\\b${rule.pattern}\\b`, "i");
+      if (regex.test(input)) {
+        matched = true;
+      }
+    }
+
+    if (matched) {
       patternScore += rule.weight;
       patterns.push(rule.pattern);
     }
   });
 
+  // 🧠 Intent Detection
   let intent = "Benign";
   let intentScore = 0;
 
@@ -62,9 +75,9 @@ function analyzeInput() {
   let reason = "No malicious indicators detected.";
 
   if (decision === "BLOCK") {
-    reason = "High-risk prompt injection, role override, or data extraction attempt detected.";
+    reason = "High-risk prompt injection or sensitive data extraction attempt detected.";
   } else if (decision === "REVIEW") {
-    reason = "Suspicious security-related patterns found. Manual validation is recommended.";
+    reason = "Suspicious patterns found. Manual validation recommended.";
   }
 
   resultBox.className = `result-box ${cssClass}`;
