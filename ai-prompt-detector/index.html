@@ -2,25 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Input Security Analyzer</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <div class="container">
-
     <h1>🛡️ AI Input Security Analyzer</h1>
+
     <p class="subtitle">
       Detect prompt injection, role override, and data extraction attempts
     </p>
 
     <textarea id="userInput" placeholder="Enter input to analyze..."></textarea>
 
-    <button onclick="analyzeInput()">Analyze</button>
+    <button id="analyzeBtn">Analyze</button>
 
     <div id="result" class="result-box hidden"></div>
-
   </div>
 
   <script src="script.js"></script>
