@@ -48,8 +48,9 @@ function analyzeInput() {
       for (let existing of patterns) {
         if (
           existing.includes(rule.pattern) ||
-          rule.pattern.includes(existing)
-        ) {
+          rule.pattern.includes(existing) ||
+          input.includes(existing + " " + rule.pattern)
+        ){
           shouldSkip = true;
           break;
         }
