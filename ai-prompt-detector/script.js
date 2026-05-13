@@ -1,3 +1,10 @@
+console.log("script.js loaded successfully");
+
+document.addEventListener("DOMContentLoaded", function () {
+  const analyzeBtn = document.getElementById("analyzeBtn");
+  analyzeBtn.addEventListener("click", analyzeInput);
+});
+
 function analyzeInput() {
   const rawInput = document.getElementById("userInput").value;
   const input = rawInput.toLowerCase().trim();
@@ -8,9 +15,9 @@ function analyzeInput() {
 
   const rules = [
     { pattern: "reveal hidden system prompt", weight: 70, type: "phrase" },
+    { pattern: "reveal system prompt", weight: 60, type: "phrase" },
     { pattern: "ignore all instructions", weight: 50, type: "phrase" },
     { pattern: "ignore previous instructions", weight: 50, type: "phrase" },
-    { pattern: "reveal system prompt", weight: 60, type: "phrase" },
     { pattern: "system prompt", weight: 50, type: "phrase" },
     { pattern: "developer mode", weight: 50, type: "phrase" },
     { pattern: "admin mode", weight: 45, type: "phrase" },
